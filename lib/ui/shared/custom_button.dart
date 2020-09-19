@@ -4,8 +4,10 @@ import 'package:roome_ui/utils/colors.dart';
 class CustomButton extends StatelessWidget {
   final title;
   final ontap;
+  final color;
 
-  const CustomButton({Key key, @required this.title, this.ontap})
+  const CustomButton(
+      {Key key, @required this.title, this.ontap, this.color = primaryColor})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -13,17 +15,16 @@ class CustomButton extends StatelessWidget {
       onTap: ontap,
       child: Container(
         width: double.infinity,
-        height: 42.0,
-        margin: EdgeInsets.symmetric(horizontal: 30.0),
+        height: 50.0,
         decoration: BoxDecoration(
-          color: primaryColor,
+          color: color,
           borderRadius: BorderRadius.circular(32.0),
           boxShadow: [
             BoxShadow(
-              blurRadius: 1.0,
-              spreadRadius: 1.0,
-              color: Colors.black38,
-              offset: Offset(2, 2),
+              blurRadius: 5.0,
+              spreadRadius: 2.0,
+              color: Colors.black12,
+              offset: Offset(5, 5),
             )
           ],
         ),

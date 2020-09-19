@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:roome_ui/ui/home_screen.dart';
 import 'package:roome_ui/ui/landing_screen.dart';
 import 'package:roome_ui/ui/login_screen.dart';
+import 'package:roome_ui/ui/signup_screen.dart';
 import 'package:roome_ui/utils/app_constants.dart';
 
 class Router {
@@ -21,6 +23,31 @@ class Router {
       case RoutePaths.LoginScreen:
         return PageRouteBuilder(
           pageBuilder: (_, __, ___) => LoginScreen(),
+          transitionDuration: Duration(milliseconds: 500),
+          transitionsBuilder:
+              (_, Animation<double> animation, __, Widget child) {
+            return Opacity(
+              opacity: animation.value,
+              child: child,
+            );
+          },
+        );
+      case RoutePaths.SignupScreen:
+        return PageRouteBuilder(
+          pageBuilder: (_, __, ___) => SignupScreen(),
+          transitionDuration: Duration(milliseconds: 500),
+          transitionsBuilder:
+              (_, Animation<double> animation, __, Widget child) {
+            return Opacity(
+              opacity: animation.value,
+              child: child,
+            );
+          },
+        );
+
+      case RoutePaths.HomeScreen:
+        return PageRouteBuilder(
+          pageBuilder: (_, __, ___) => HomeScreen(),
           transitionDuration: Duration(milliseconds: 500),
           transitionsBuilder:
               (_, Animation<double> animation, __, Widget child) {
