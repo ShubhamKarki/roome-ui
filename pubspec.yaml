@@ -60,6 +60,55 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+
+  fonts:
+     - family: CustomFlutterIcons
+       fonts:
+         - asset: fonts/CustomFlutterIcons.ttf
+
+     - family: Nunito
+       fonts:
+         - asset: fonts/NunitoExtraLight.ttf
+           weight: 200
+         - asset: fonts/NunitoLight.ttf
+           weight: 300
+         - asset: fonts/NunitoRegular.ttf
+           weight: 400
+         - asset: fonts/NunitoSemiBold.ttf
+           weight: 600
+         - asset: fonts/NunitoBold.ttf
+           weight: 700
+         - asset: fonts/NunitoExtraBold.ttf
+           weight: 800
+         - asset: fonts/NunitoBlack.ttf
+           weight: 900
+
+     - family: Sans
+       fonts:
+         - asset: assets/font/OpenSans-Bold.ttf
+           weight: 800
+         - asset: assets/font/OpenSans-Semibold.ttf
+           weight: 600
+         - asset: assets/font/OpenSans-Regular.ttf
+           weight: 400
+         - asset: assets/font/OpenSans-Light.ttf
+           weight: 200
+     - family : Popins
+       fonts:
+         - asset: assets/font/Poppins-Regular.ttf
+           weight: 400
+         - asset: assets/font/Poppins-SemiBold.ttf
+           weight : 600
+     - family : Berlin
+       fonts:
+         - asset: assets/font/BRLNSDB.TTF
+           weight: 700
+     - family : Gotik
+       fonts:
+         - asset: assets/font/GOTHIC.TTF
+           weight: 400
+         - asset: assets/font/GOTHICB.TTF
+           weight : 600
   # fonts:
   #   - family: Schyler
   #     fonts:
