@@ -3,10 +3,14 @@ import 'package:roome_ui/data/trips_data.dart';
 import 'package:roome_ui/utils/colors.dart';
 import 'package:roome_ui/utils/styles.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:uuid/uuid.dart';
 
 class FavoritesTab extends StatelessWidget {
+  final uuid = Uuid();
   @override
   Widget build(BuildContext context) {
+    final uuidId = uuid.v4();
+
     return ListView.builder(
       itemCount: upcoming.length + 1,
       itemBuilder: (context, index) => index == upcoming.length
@@ -31,17 +35,51 @@ class FavoritesTab extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Container(
-                    height: 120,
-                    width: 120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.0),
-                        bottomLeft: Radius.circular(20.0),
-                      ),
-                      image: DecorationImage(
-                        image: AssetImage(upcoming[index].image),
-                        fit: BoxFit.cover,
+                  Hero(
+                    tag: "hero-$uuidId$index",
+                    child: Material(
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(PageRouteBuilder(
+                              opaque: false,
+                              pageBuilder: (BuildContext context, _, __) {
+                                return new Material(
+                                  color: Colors.black54,
+                                  child: Container(
+                                    padding: EdgeInsets.all(30.0),
+                                    child: InkWell(
+                                      child: Hero(
+                                          tag: "hero-$uuidId$index",
+                                          child: Image.asset(
+                                            upcoming[index].image,
+                                            width: 300.0,
+                                            height: 300.0,
+                                            alignment: Alignment.center,
+                                            fit: BoxFit.contain,
+                                          )),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ),
+                                );
+                              },
+                              transitionDuration: Duration(milliseconds: 500)));
+                        },
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20.0),
+                              bottomLeft: Radius.circular(20.0),
+                            ),
+                            image: DecorationImage(
+                              image: AssetImage(upcoming[index].image),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

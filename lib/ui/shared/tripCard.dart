@@ -3,13 +3,16 @@ import 'package:roome_ui/model/trips.dart';
 import 'package:roome_ui/utils/colors.dart';
 import 'package:roome_ui/utils/styles.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:uuid/uuid.dart';
 
 class TripCard extends StatelessWidget {
   final Trips trip;
-
-  const TripCard({Key key, @required this.trip}) : super(key: key);
+  final uuid = Uuid();
+  TripCard({Key key, @required this.trip}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final uuidId = uuid.v4();
+
     return Container(
       child: Column(
         children: [
@@ -19,7 +22,7 @@ class TripCard extends StatelessWidget {
           Text(
             '${trip.date}, ${trip.rooms} Room - ${trip.memberCount} Adults',
             style: TextStyle(
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w800,
               fontSize: 15,
             ),
           ),
@@ -43,33 +46,67 @@ class TripCard extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Container(
-                  height: 200,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20.0),
-                      topRight: Radius.circular(20.0),
-                    ),
-                    image: DecorationImage(
-                        image: AssetImage(
-                          trip.image,
+                Hero(
+                  tag: "hero-$uuidId",
+                  child: Material(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(PageRouteBuilder(
+                            opaque: false,
+                            pageBuilder: (BuildContext context, _, __) {
+                              return new Material(
+                                color: Colors.black54,
+                                child: Container(
+                                  padding: EdgeInsets.all(30.0),
+                                  child: InkWell(
+                                    child: Hero(
+                                        tag: "hero-$uuidId",
+                                        child: Image.asset(
+                                          trip.image,
+                                          width: 300.0,
+                                          height: 300.0,
+                                          alignment: Alignment.center,
+                                          fit: BoxFit.contain,
+                                        )),
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                            transitionDuration: Duration(milliseconds: 500)));
+                      },
+                      child: Container(
+                        height: 200,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0),
+                          ),
+                          image: DecorationImage(
+                              image: AssetImage(
+                                trip.image,
+                              ),
+                              fit: BoxFit.cover),
                         ),
-                        fit: BoxFit.cover),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor: whiteColor,
-                        child: Center(
-                          child: Icon(
-                            trip.isFavourite
-                                ? Icons.favorite
-                                : Icons.favorite_border,
-                            color: primaryColor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: CircleAvatar(
+                              radius: 20.0,
+                              backgroundColor: whiteColor,
+                              child: Center(
+                                child: Icon(
+                                  trip.isFavourite
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: primaryColor,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
