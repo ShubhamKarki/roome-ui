@@ -3,7 +3,7 @@ class RoutePaths {
   static const LoginScreen = '/LoginScreen';
   static const SignupScreen = '/SignupScreen';
   static const HomeScreen = '/HomeScreen';
-  // static const OtpView = '/OtpView';
+  static const SearchScreen = '/SearchScreen';
   // static const OtpView = '/OtpView';
   // static const OtpView = '/OtpView';
   // static const OtpView = '/OtpView';

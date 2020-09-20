@@ -23,9 +23,18 @@ const heading3Style = TextStyle(
   fontWeight: FontWeight.w900,
   fontSize: 16,
 );
-const tabTitlestyle = TextStyle(fontSize: 14, fontWeight: FontWeight.w700);
+const tabTitlestyle = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w700,
+);
+
 const titlestyle = TextStyle(
   fontSize: 15,
+);
+
+const titleboldstyle = TextStyle(
+  fontSize: 15,
+  fontWeight: FontWeight.w700,
 );
 
 const subtitleStyle = TextStyle(

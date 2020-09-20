@@ -7,8 +7,13 @@ import 'package:uuid/uuid.dart';
 
 class TripCard extends StatelessWidget {
   final Trips trip;
+  final hidedate;
   final uuid = Uuid();
-  TripCard({Key key, @required this.trip}) : super(key: key);
+  TripCard({
+    Key key,
+    @required this.trip,
+    this.hidedate = false,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final uuidId = uuid.v4();
@@ -19,16 +24,18 @@ class TripCard extends StatelessWidget {
           SizedBox(
             height: 15.0,
           ),
-          Text(
-            '${trip.date}, ${trip.rooms} Room - ${trip.memberCount} Adults',
-            style: TextStyle(
-              fontWeight: FontWeight.w800,
-              fontSize: 15,
+          if (!hidedate)
+            Text(
+              '${trip.date}, ${trip.rooms} Room - ${trip.memberCount} Adults',
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                fontSize: 15,
+              ),
             ),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
+          if (!hidedate)
+            SizedBox(
+              height: 10.0,
+            ),
           Container(
             width: double.infinity,
             margin: const EdgeInsets.symmetric(horizontal: 20.0),

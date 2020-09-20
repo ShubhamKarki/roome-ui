@@ -32,6 +32,9 @@ class MyApp extends StatelessWidget {
           primaryColor: primaryColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'Nunito',
+          colorScheme: ColorScheme.light(
+            primary: primaryColor,
+          ),
         ),
         initialRoute: RoutePaths.LandingScreen,
         onGenerateRoute: Router.generateRoute,
